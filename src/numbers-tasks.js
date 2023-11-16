@@ -221,8 +221,11 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  if (!Number(value)) {
+    return def;
+  }
+  return Number(value);
 }
 
 /**
@@ -253,8 +256,24 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) {
+    return 0;
+  }
+  if (index === 1) {
+    return 1;
+  }
+  let prevFib = 0;
+  let curFib = 1;
+  let i = 1;
+  let result = 0;
+  while (i < index) {
+    result = prevFib + curFib;
+    prevFib = curFib;
+    curFib = result;
+    i += 1;
+  }
+  return result;
 }
 
 /**
@@ -584,8 +603,8 @@ function getMaxNumber(firstNumber, secondNumber) {
  * -5, 0 => -5 | -4 | -3 | -2 | -1 | 0
  * -1, 1 => -1 | 0 | 1
  */
-function getRandomInteger(/* min, max */) {
-  throw new Error('Not implemented');
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
 }
 
 /**
